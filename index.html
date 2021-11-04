@@ -49,17 +49,24 @@
         </table>
     </fieldset>
     <script>
+        var equalPressed = false;
+
         function clearInput() {
             document.getElementById("inputField").value = "";
         }
 
         function deleteCharacter() {
+            if (equalPressed) {
+                clearInput();
+                equalPressed = (!equalPressed);
+            }
             temp_value = document.getElementById("inputField").value;
             document.getElementById("inputField").value = temp_value.slice(0, temp_value.length - 1);
 
         }
 
         function setInput(clicked_value) {
+            equalPressed = false;
             document.getElementById("inputField").value += clicked_value;
         }
 
@@ -68,6 +75,7 @@
                 var getValue = document.getElementById("inputField").value;
                 var result = eval(getValue);
                 document.getElementById("inputField").value = result;
+                equalPressed = (!equalPressed);
             }
         }
 

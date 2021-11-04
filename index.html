@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CALCULATOR</title>
+    <link rel="stylesheet" href="./main.css">
+</head>
+
+<body>
+    <fieldset>
+        <legend>
+            Calculator
+        </legend>
+        <input type="text" placeholder="0" id="inputField" disabled>
+        <table>
+            <tr>
+                <td><input type="submit" value="CE" onclick="clearInput()"></td>
+                <td><input type="submit" value="C" onclick="clearInput()"></td>
+                <td><input type="submit" value="Del" onclick="deleteCharacter()"></td>
+                <td><input type="submit" value="/" onclick="setInput('/')"></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="7" onclick="setInput('7')"></td>
+                <td><input type="submit" value="8" onclick="setInput('8')"></td>
+                <td><input type="submit" value="9" onclick="setInput('9')"></td>
+                <td><input type="submit" value="*" onclick="setInput('*')"></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="4" onclick="setInput('4')"></td>
+                <td><input type="submit" value="5" onclick="setInput('5')"></td>
+                <td><input type="submit" value="6" onclick="setInput('6')"></td>
+                <td><input type="submit" value="-" onclick="setInput('-')"></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="1" onclick="setInput('1')"></td>
+                <td><input type="submit" value="2" onclick="setInput('2')"></td>
+                <td><input type="submit" value="3" onclick="setInput('3')"></td>
+                <td><input type="submit" value="+" onclick="setInput('+')"></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="+/-" onclick="plusMinus()"></td>
+                <td><input type="submit" value="0" onclick="setInput('0')"></td>
+                <td><input type="submit" value="." onclick="setInput('.')"></td>
+                <td><input type="submit" value="=" onclick="displayResult()"></td>
+            </tr>
+        </table>
+    </fieldset>
+    <script>
+        function clearInput() {
+            document.getElementById("inputField").value = "";
+        }
+
+        function deleteCharacter() {
+            temp_value = document.getElementById("inputField").value;
+            document.getElementById("inputField").value = temp_value.slice(0, temp_value.length - 1);
+
+        }
+
+        function setInput(clicked_value) {
+            document.getElementById("inputField").value += clicked_value;
+        }
+
+        function displayResult() {
+            if (document.getElementById("inputField").value != "") {
+                var getValue = document.getElementById("inputField").value;
+                var result = eval(getValue);
+                document.getElementById("inputField").value = result;
+            }
+        }
+
+        function plusMinus() {
+            if (document.getElementById("inputField").value > 0) {
+                temp_value = Number(document.getElementById("inputField").value);
+                temp_value -= (temp_value * 2);
+                document.getElementById("inputField").value = temp_value;
+            }
+            else if (document.getElementById("inputField").value < 0) {
+                temp_value = Number(document.getElementById("inputField").value);
+                temp_value = Math.abs(temp_value);
+                document.getElementById("inputField").value = temp_value;
+            }
+        }
+    </script>
+</body>
+
+</html>
